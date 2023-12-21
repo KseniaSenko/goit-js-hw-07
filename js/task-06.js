@@ -10,32 +10,28 @@ const refs = {
   destroyBoxesBtn: document.querySelector('button[data-destroy]'),
   boxesEl: document.getElementById('boxes'),
 }
-refs.createBoxesBtn.addEventListener('click', createBoxes);
-refs.destroyBoxesBtn.addEventListener('click', destroyBoxes)
+const { inputValue, createBoxesBtn, destroyBoxesBtn, boxesEl } = refs;
 
-const inputValue = () => Number(refs.inputValue.value);
-function createBoxes(amount) {
-  amount = inputValue();
+function createBoxes() {
+  const num = Number(inputValue.value);
 
-   refs.boxesEl.innerHTML = '';
+  refs.boxesEl.textContent = '';
 
-  let boxWidth = 30;
-  let boxHeight = 30;
-
-  const boxes = [];
-
-  if (amount >= refs.inputValue.min && amount <= refs.inputValue.max) {
-    for (let i = 1; i <= amount; i += 1){
-    const box = document.createElement('div');
-    box.style.backgroundColor = getRandomHexColor();
-    box.style.width = `${(boxWidth += 10)}px`;
-    box.style.height = `${(boxHeight += 10)}px`;
-    boxes.push(box)
-  }
-  refs.boxesEl.append(...boxes); 
-  }  
-}
+  if (num >= inputValue.min && num <= inputValue.max) {
+    for (let i = 0; i < num; i += 1){
+      const box = document.createElement('div');
+      box.classList.add('box');
+      box.style.backgroundColor = getRandomHexColor();
+      box.style.width = `${30 + i * 10}px`;
+      box.style.height = `${30 + i * 10}px`;
+      boxesEl.append(box);
+    };
+  };
+};
 
 function destroyBoxes() {
-  refs.boxesEl.innerHTML = '';
-}
+  refs.boxesEl.textContent = '';
+};
+
+createBoxesBtn.addEventListener('click', createBoxes);
+destroyBoxesBtn.addEventListener('click', destroyBoxes);
