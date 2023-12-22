@@ -25,12 +25,14 @@ function createBoxes() {
       box.style.width = `${30 + i * 10}px`;
       box.style.height = `${30 + i * 10}px`;
       boxesEl.append(box);
+      inputValue.value = '';
     };
   };
 };
 
 function destroyBoxes() {
   refs.boxesEl.textContent = '';
+  inputValue.value = '';
 };
 
 createBoxesBtn.addEventListener('click', createBoxes);
