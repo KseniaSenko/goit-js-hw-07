@@ -5,6 +5,7 @@ function onFormSubmit(event) {
     event.preventDefault();
 
     const form = event.target;
+          
 
     const formData = {
         email: form.elements.email.value,
@@ -12,9 +13,9 @@ function onFormSubmit(event) {
     }
     const { email, password } = formData;
 
-    if (email.trim() || password.trim()) {
+    if (email.trim() === '' || password.trim() === '') {
         return alert('All form fields must be filled in');
     }
-
+    console.log(formData);
     form.reset();   
 }
